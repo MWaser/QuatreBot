@@ -12,9 +12,11 @@
     "name": ""
   },
   "dependencies": {
+    "child-process": "^1.0.2",
     "debug": "^2.2.0",
     "express": "^4.14.0",
-    "pug": "^2.0.0-rc.3"
+    "pug": "^2.0.0-rc.3",
+    "steem": "^0.7.6"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
