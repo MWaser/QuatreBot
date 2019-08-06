@@ -48,30 +48,30 @@ app.use((err: any, req, res, next) => {
 });
 
 // ******************************************************************************************
-console.log('Starting up steembot4 . . . .');
+//console.log('Starting up steembot4 . . . .');
 
-var steem = require("steem");
-//steem.api.setOptions({ url: 'wss://steemd-int.steemit.com' });
-steem.api.setOptions({ url: 'https://api.steemit.com' });
+//var steem = require("steem");
+////steem.api.setOptions({ url: 'wss://steemd-int.steemit.com' });
+//steem.api.setOptions({ url: 'https://api.steemit.com' });
 
-var watcher;
-var restarts = 0;
+//var watcher;
+//var restarts = 0;
 
-var createWatcher = function () {
-    watcher = require('child_process').fork(`${__dirname}/watch.js`);
-    watcher.on('message', (m) => {
-        console.log((new Date()) + ": received " + m.message + ", restarts = " + restarts);
-        createWatcher();
-    });
-}
+//var createWatcher = function () {
+//    watcher = require('child_process').fork(`${__dirname}/watch.js`);
+//    watcher.on('message', (m) => {
+//        console.log((new Date()) + ": received " + m.message + ", restarts = " + restarts);
+//        createWatcher();
+//    });
+//}
 
-createWatcher();
+//createWatcher();
 
-var checkWatcher = function () {
-    console.log("RESTARTS = " + restarts);
-}
+//var checkWatcher = function () {
+//    console.log("RESTARTS = " + restarts);
+//}
 
-var intId = setInterval(checkWatcher, 60000);
+//var intId = setInterval(checkWatcher, 60000);
 // ******************************************************************************************
 
 app.set('port', process.env.PORT || 3000);
