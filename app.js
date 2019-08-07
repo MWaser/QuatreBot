@@ -50,7 +50,10 @@ var createWatcher = function () {
     watcher = require('child_process').fork(`${__dirname}/watch.js`);
     watcher.on('message', (m) => {
         console.log((new Date()) + ": received " + m.message + ", restarts = " + restarts);
-        createWatcher();
+        if (m.message.startsWith("RESTART")) {
+            restarts++;
+            createWatcher();
+        }
     });
 };
 createWatcher();

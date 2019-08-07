@@ -121,7 +121,7 @@ try {
                         var nowLocal = new Date();
                         var nowUtc = new Date(nowLocal.getTime() + (nowLocal.getTimezoneOffset() * 60000));
                         var now = nowUtc.valueOf() / 1000;
-                        console.log(nowLocal.toString() + "-" + result[1].author + "/" + result[1].permlink);
+                        process.send({ message: result[1].author + "/" + result[1].permlink });
                         authorScore = authorExists(result[1].author);
                         if (authorScore > 0) {
                             var heldScore = authorScore;
@@ -143,7 +143,7 @@ try {
                         }
                         if (articles.length > 0) {
                             for (let art of articles) {
-                                console.log("WAITING! " + (now - art.created).toString() + " // " + art.author + " - " + art.identifier + " - " + art.vote);
+                                process.send({ message: "WAITING! " + (now - art.created).toString() + " // " + art.author + " - " + art.identifier + " - " + art.vote });
                             }
                             if ((now - articles[0].created) >= 885) {
                                 voter = require('child_process').fork(`${__dirname}/vote.js`);
@@ -159,17 +159,17 @@ try {
             }
             else {
                 console.log("Caught Stream ERROR! " + JSON.stringify(err));
-                process.send({ message: "Caught Stream ERROR! " + JSON.stringify(err) });
+                process.send({ message: "RESTART: Caught Stream ERROR! " + JSON.stringify(err) });
             }
         }
         catch (ex) {
             console.log("UNCAUGHT ERROR! " + JSON.stringify(ex));
-            process.send({ message: "UNCAUGHT ERROR! " + JSON.stringify(ex) });
+            process.send({ message: "RESTART: UNCAUGHT ERROR! " + JSON.stringify(ex) });
         }
     });
 }
 catch (ex) {
     console.log("outer SO ERROR! " + JSON.stringify(ex));
-    process.send({ message: "outer SO ERROR! " + JSON.stringify(ex) });
+    process.send({ message: "RESTART: outer SO ERROR! " + JSON.stringify(ex) });
 }
 //# sourceMappingURL=watch.js.map
