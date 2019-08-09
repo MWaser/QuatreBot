@@ -47,6 +47,18 @@ app.use((err: any, req, res, next) => {
     });
 });
 
+// const config = require('./config');
+var config = { server: 'rabc1.database.windows.net', authentication: { type: 'default', options: { userName: 'rabc', password: 'microH34d' } }, options: { database: 'rabc-db' } }
+const tedious = require('tedious');
+var connection = new tedious.Connection(config);
+console.log(config);
+connection.on('connect', function (err) {
+    if (err) console.log("DB CONNECTION ERROR: " + err); else console.log("DB CONNECTION SUCCESSFUL!!!");
+    connection.close();
+});
+
+
+
 // ******************************************************************************************
 console.log('Starting up steembot4 . . . .');
 

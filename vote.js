@@ -35,8 +35,9 @@ var vote = function (i, author, identifier, weight) {
         else {
             console.log(voters[i].name + " ERROR! " + JSON.stringify(err));
         }
+        // if (++i < voters.length) { vote(i, author, identifier, weight); } else process.exit();
         if (++i < voters.length) {
-            vote(i, author, identifier, weight);
+            vote(i, author, identifier, 1);
         }
         else
             process.exit();
