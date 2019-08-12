@@ -54,7 +54,6 @@
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="vote.ts" />
     <TypeScriptCompile Include="watch.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

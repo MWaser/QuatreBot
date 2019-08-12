@@ -51,7 +51,7 @@ app.use((err: any, req, res, next) => {
 var config = {
     server: 'rabc1.database.windows.net',
     authentication: { type: 'default', options: { userName: 'rabc', password: 'microH34d' } },
-    options: { encrypt: true, database: 'rabc-db' }
+    options: { encrypt: true }
 }
 const tedious = require('tedious');
 var connection = new tedious.Connection(config);
