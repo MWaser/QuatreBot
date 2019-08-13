@@ -23,7 +23,9 @@ voters.push(new Voter("handyman", "5KfMndwHZvAKFZT2AoWZs8bwY9VVKsaXSGFeAy8UagaXq
 voters.push(new Voter("zero.state", "kpZEnqXt171oo5NSMhBbA9M9TRswaKHr"));
 voters.push(new Voter("ellepdub", "5JuAvBsdDVBE4XwdmHXWkJnMBQvKxcSRnTZb1p65CKTuAUZiiLk"));
 var vote = function (author, identifier, weight) {
+    console.log("starting voting");
     for (let voter of voters) {
+        console.log(voter.name + " voting");
         // steem.broadcast.vote(voter.wif, voter.name, author, identifier, weight, function (err, result) {
         steem.broadcast.vote(voter.wif, voter.name, author, identifier, 1, function (err, result) {
             if (err == null)
@@ -185,6 +187,7 @@ try {
                             }
                             if ((now - articles[0].created) >= 885) {
                                 vote(articles[0].author, articles[0].identifier, articles[0].vote);
+                                articles.shift();
                             }
                         }
                         else {
